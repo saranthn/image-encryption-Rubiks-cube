@@ -37,6 +37,17 @@ ITER_MAX = 1
 print('Vector Kr : ', Kr)
 print('Vector Kc : ', Kc)
 
+# Open file in write mode and note the keys used
+f = open('keys.txt','w+')
+f.write('Vector Kr : \n')
+for a in Kr:
+	f.write(str(a) + '\n')
+f.write('Vector Kc : \n')
+for a in Kc:
+	f.write(str(a) + '\n')
+f.write('ITER_MAX : \n')
+f.write(str(ITER_MAX) + '\n')
+
 for iterations in range(ITER_MAX):
 	# For each row
     # 1. Compute sum of all elements
@@ -113,9 +124,10 @@ for iterations in range(ITER_MAX):
 				g[i][j] = g[i][j] ^ rotate180(Kr[i])
 				b[i][j] = b[i][j] ^ rotate180(Kr[i])
 
-
+# Combine R,G,B values to form image
 for i in range(m):
 	for j in range(n):
 		pix[i,j] = (r[i][j],g[i][j],b[i][j])
 
+# Save the image
 im.save('encrypted_images/' + sys.argv[1])
